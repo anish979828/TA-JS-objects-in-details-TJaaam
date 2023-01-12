@@ -21,22 +21,50 @@
    
 // - Pseudoclassical Pattern (Put methods inside F.prototype and use `new` to call function)
 
-function CreateQuestion(title,options,correctAnswerIndex){
-    this.title = title;
-    this.options = options;
-    this.correctAnswerIndex = correctAnswerIndex;
-};
+// function CreateQuestion(title,options,correctAnswerIndex){
+//     this.title = title;
+//     this.options = options;
+//     this.correctAnswerIndex = correctAnswerIndex;
+// };
 
-CreateQuestion.prototype = {
-    isAnswerCorrect: function(correct){
-        return this.correctAnswerIndex == correct ? true : false; 
-    },
-    getCorrectAnswer: function (){
+// CreateQuestion.prototype = {
+//     isAnswerCorrect: function(correct){
+//         return this.correctAnswerIndex == correct ? true : false; 
+//     },
+//     getCorrectAnswer: function (){
+//         return this.options[this.correctAnswerIndex];
+//     }
+// };
+
+// creating object using class 
+
+
+class question {
+
+    constructor (title,options,correctAnswerIndex){
+        this.title = title;
+        this.options = options;
+        this.correctAnswerIndex = correctAnswerIndex;
+    }
+
+    isAnswerCorrect(correct){
+        return this.correctAnswerIndex == correct ? true : false;
+    }
+
+    getCorrectAnswer(){
         return this.options[this.correctAnswerIndex];
     }
-};
+}
 
-let a = new CreateQuestion("what is capital of India?", ["patna","NewDelhi","Bhopal"],1);
-
-
+// TEST
+let firstQuestion = new Question(
+    'Where is the capital of Jordan',
+    ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'],
+    1
+  );
+  let secondQuestion = new Question(
+    'Where is the capital of Jamaica',
+    ['Tashkent', 'Amaan', 'Kingston', 'Nairobi'],
+    2
+  );
 

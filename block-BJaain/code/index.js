@@ -1,4 +1,5 @@
 console.log(this.document === document); // Output
+// utrdrd
 
 // ------------
 

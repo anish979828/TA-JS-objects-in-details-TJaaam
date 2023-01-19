@@ -12,6 +12,9 @@
 
 - Create a static method named `isEqual` which accepts two square instance (when you create a new object using the class). If the area of both square is same the method should return `true` or `false`. (Static methods are called directly on the class not in the instance)
 
+- Create another property named `numberOfTimes` that will hold the valueopf number of times the area property is accessed form the object.the value will initilizing to `0`.The area property cannot be accessed from more than 4 times.if it is crosses four times alert message `Upper Limit Reached`
+
+
 - Create two instance of the `Square` class (ex: `let s1 = new Square(6);`)
 
 - Check the `area` getter method on both square.
@@ -24,7 +27,7 @@
 
 - Create a getter method named `fullName` that will return the full name of the person.
 
-- Create a `fullName` setter method that will accept full name parameter of the person. It will update the `firstName` and `lastName` based on the input. (Say if the user passed `Arya Stark` it will update the `firstName` to `Arya` and `lastName` to `Stark`. It will also change one condition if the length of the name passed is less than 5 characters it will alert a message saying `Full name should be more than 5 characters`)
+- Create a `fullName` setter method that will accept full name parameter of the person. It will update the `firstName` and `lastName` based on the input. (Say if the user passed `Arya Stark` it will update the `firstName` to `Arya` and `lastName` to `Stark`. It will also change one condition if the length of the name passed is less than 5 characters it will alert a message saying `Full name should be more than 5 characters`);
 
 - Create a method named `nameContains` which will accept string and will return `true` or `false` based on if the name of the user contains the text that passed by user.
 

@@ -1,16 +1,16 @@
-console.log(this.document === document); // Output
+console.log(this.document === document); // true
 //
 
 // ------------
 
-console.log(this === window); //Output
+console.log(this === window); // true
 
 // ------------
 
 var myFunction = function () {
   console.log(this);
 };
-myFunction(); // Output
+myFunction(); // window object
 
 // ------------
 
@@ -18,7 +18,7 @@ function f1() {
   'use strict';
   return this;
 }
-console.log(f1() === window); //Output
+console.log(f1() === window); // false
 
 // ------------
 
@@ -27,7 +27,8 @@ function foo() {
   console.log(this === window);
 }
 
-foo(); //Output ??
+foo(); //"Simple function call"
+       // true;
 
 // ------------
 
@@ -35,7 +36,8 @@ foo(); //Output ??
 (function () {
   console.log('Anonymous function invocation');
   console.log(this === window);
-})(); //Output
+})(); // "Anonymous function invoction"
+      // true;
 
 // ------------
 
@@ -43,7 +45,7 @@ var myObject = {};
 myObject.someMethod = function () {
   console.log(this);
 };
-myObject.someMethod(); //Value Of This
+myObject.someMethod(); // {someMethod: fn}
 
 // ------------
 
@@ -56,10 +58,10 @@ function Person(fn, ln) {
   };
 }
 
-let person = new Person('John', 'Reed');
-person.displayName(); // Output
+let person1 = new Person('John', 'Reed');
+person1.displayName(); // Name: John Reed 
 let person2 = new Person('Paul', 'Adams');
-person2.displayName(); // Output
+person2.displayName(); // Name: Paul Adams
 
 // ------------
 
@@ -77,10 +79,11 @@ let user = {
   },
 };
 
-user.foo(); // Output
+user.foo(); // Simple function call 
+            // false;
 let fun1 = user.foo1;
-fun1(); // Output ??
-user.foo1(); // Output ??
+fun1(); // true
+user.foo1(); // false
 
 // ------------
 
@@ -92,13 +95,13 @@ var obj = {
   },
 };
 
-obj.getX(); // Output ??
+obj.getX(); // 81
 
 var retrieveX = obj.getX;
-retrieveX(); //Output ??
+retrieveX(); // 9
 
 var boundGetX = retrieveX.bind(obj);
-boundGetX(); // Output ??
+boundGetX(); // 81
 
 // ------------
 
@@ -111,12 +114,11 @@ function Person(fn, ln) {
   };
 }
 
-let person = new Person('John', 'Reed');
-person.displayName(); // Output
-let person2 = new Person('Paul', 'Adams');
-person2.displayName(); // Output
-
-person.displayName.call(person2); // Output ??
+let p1 = new Person('John', 'Reed');
+p1.displayName(); // Name: John Reed
+let p2 = new Person('Paul', 'Adams');
+p2.displayName(); // Name: Paul Adams
+p1.displayName.call(p2); // Name:  Paul Adams
 
 // ------------
 

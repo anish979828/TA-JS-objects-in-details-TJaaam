@@ -50,7 +50,6 @@ class User {
             let last = fullName.split(" ")[1];
             this.lastName = last;
         }
-        
     }
     nameContains(str){
         return `${this.firstName} ${this.lastName}`.includes(str);

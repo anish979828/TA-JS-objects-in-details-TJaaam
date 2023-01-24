@@ -135,37 +135,36 @@ obj.getThis3 = obj.getThis.bind(obj);
 obj.getThis4 = obj.getThis2.bind(obj);
 
 // Output
-obj.getThis();
+obj.getThis(); // window object 
 
 // Output
-obj.getThis.call(a);
+obj.getThis.call(a); //window object
 
 // Output
-obj.getThis2();
+obj.getThis2();// obj{getThis: fn, getThis2: fn, getThis3: fn, getThis: fn}
 
 // Output
-obj.getThis2.call(a);
+obj.getThis2.call(a); // a{a: a};
 
 // Output
-obj.getThis3();
+obj.getThis3();//window object
 
 // Output
-obj.getThis4();
+obj.getThis4(); // obj{getThis: fn, getThis2: fn, getThis3: fn, getThis: fn}
 
 // -------------
 
-let person = {
+let p = {
   name: 'Jay',
   greet: function () {
     console.log('hello, ' + this.name);
   },
 };
 
-person.greet(); // output
+p.greet(); // hello, Jay
 
-let greet = person.greet;
-greet(); // output
-
+let greet = p.greet;
+greet(); // hello
 // -------------
 
 let name = 'Jay Global';
@@ -181,14 +180,14 @@ let person = {
     return this.name;
   },
 };
-console.log(person.details.print()); // output?
-console.log(person.print()); // output?
+console.log(person.details.print()); // Jay Details
+console.log(person.print()); // Jay Person
 
 let name1 = person.print;
 let name2 = person.details;
 
-console.log(name1()); // output?
-console.log(name2.print()); // output?
+console.log(name1()); // Jay Global
+console.log(name2.print()); // Jay Global
 
 // --------
 

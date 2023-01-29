@@ -45,7 +45,7 @@ var myObject = {};
 myObject.someMethod = function () {
   console.log(this);
 };
-myObject.someMethod(); // {someMethod: fn}
+myObject.someMethod(); // myObject{someMethod: fn}
 
 // ------------
 
@@ -201,7 +201,8 @@ let outerFn = function () {
   return innerFn;
 };
 
-outerFn()();
+outerFn()(); // inneritem is not defined;
+
 
 // -----------
 
@@ -212,7 +213,7 @@ let object = {
     console.log('this inside of outerFn double()');
     console.log(this);
     return this.data.map(function (item) {
-      console.log(this); // Output ???
+      console.log(this); // object;
       return item * 2;
     });
   },
@@ -220,14 +221,20 @@ let object = {
     console.log('this inside of outerFn doubleArrow()');
     console.log(this);
     return this.dataDouble.map((item) => {
-      console.log(this); // Output ???
+      console.log(this); // 
       return item * 2;
     });
-  },
+  }
 };
 
-object.double();
-object.doubleArrow();
+object.double();// `this inside of outerFn double()`
+                // object
+                // 3 window Object
+                // [2,4,6]
+
+object.doubleArrow();// 'this inside of outerFn doubleArrow()'
+                     // 3 object
+                     // [2,4,6]
 
 // --------------
 
@@ -240,7 +247,7 @@ function print() {
 }
 
 let printNameBob = print.bind(bobObj);
-console.log(printNameBob()); // output??
+console.log(printNameBob()); // Bob;
 
 // -------------------
 
@@ -263,7 +270,7 @@ console.log(getSecondData()); // Output and why ???
 
 // --------------
 
-const call = {
+const Call = {
   caller: 'mom',
   says: function () {
     console.log(`Hey, ${this.caller} just called.`);
@@ -274,14 +281,14 @@ call.says(); // output ???
 
 // -----------------
 
-const call = {
+const Call = {
   caller: 'mom',
   says: function () {
     console.log(`Hey, ${this.caller} just called.`);
   },
 };
 
-let newCall = call.says;
+let newCall = Call.says;
 
 newCall(); // output ???
 
@@ -295,7 +302,7 @@ const call = {
   caller: 'mom',
   anotherCaller: anotherCaller,
   says: function () {
-    console.log(`Hey, ${this.caller} just called.`);
+    console.log(`Hey, ${this.Caller} just called.`);
   },
 };
 

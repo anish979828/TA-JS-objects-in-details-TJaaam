@@ -7,7 +7,7 @@
 Array.prototype.myMap = function myMap(cb){
   let newArray = [];
   for(let i = 0; i < this.length; i++){
-    newArray.push(cb(this[i]));
+    newArray.push(cb(this[i],i,this));
   }
   return newArray;
 };
@@ -38,7 +38,7 @@ After adding the function test it using the code below.
 Array.prototype.myFilter = function myFilter(cb){
   let newArray = [];
   for(let i = 0; i < this.length; i++){
-    if(cb(this[i])){
+    if(cb(this[i],i,this)){
       newArray.push(this[i])
     };
   }
@@ -66,11 +66,7 @@ console.log(filteredWords); // it should be 'quick brown jumped over lazy';
 
 // // You code goes here
 Array.prototype.shuffle = function shuffle() {
-  let newArray = [];
-  for(let i = 0; i < this.length; i++){
-    newArray.push(this[Math.floor(Math.random()*this.length)])
-  }
-  return newArray;
+  return [...this].sort(() => Math.random() - 0.5);
 }
 
 // // Test to check the shuffle method (It will return different output every time you call)
@@ -91,8 +87,17 @@ console.log(words.shuffle());
 let num = [1, 2, 3, 4, 2, 3, 6, 7, 7];
 let strings = 'helloworld'.split('');
 
-// console.log(num.unique()); // [1, 2, 3, 4, 6, 7]
-// console.log(strings.unique()); // ['h', 'e', 'l', 'o', 'w', 'r', 'd']
+Array.prototype.unique = function(){
+  return this.reduce((acc,cv) => {
+    if(acc.includes(cv) == false){
+      acc.push(cv);
+    }
+    return acc;
+  },[]);
+}
+
+console.log(num.unique()); // [1, 2, 3, 4, 6, 7]
+console.log(strings.unique()); // ['h', 'e', 'l', 'o', 'w', 'r', 'd']
 
 // /*
 // 5. Add a method named `intersection` to Array.prototype. The method intersection will accept an array and returns a new
@@ -100,17 +105,13 @@ let strings = 'helloworld'.split('');
 // */
 
 // // You code goes here
-Array.prototype.intersection = function(array){
-  // let result = this.filter((el) => array.includes(el));
-  // let result = [];
-  // for(let i = 0; i < this.length; i++){
-  //   for(let j = 0; i < array.length; i++){
-  //     if(this[i] == array[j]){
-  //       result.push(this[i]);
-  //     }
-  //   }
-  // }
-  // return result;
+Array.prototype.intersection = function(arr){
+  return this.reduce((acc,cv) => {
+    if(arr.includes(cv)){
+      acc.push(cv);
+    }
+    return acc;
+  }, []).unique();
 }
 
 // // Test to check the shuffle method (It will return different output every time you call)
@@ -124,8 +125,19 @@ console.log(strings.intersection('heyworld'.split(''))); // ['h', 'e', 'o', 'w',
 // */
 
 // // You code goes here
+Array.prototype.chunk = function(size = 1){
+  let arr = [...this]
+  let len = Math.floor(arr.length / size);
+  let result = [];
+  for(let i = 0; i <= len; i++){
+    let chunk = arr.splice(0,size);
+    result.push(chunk);
+  };
+  return result.filter(i => i.length);
+}
+
 
 // // Test to check the shuffle method (It will return different output every time you call)
-// console.log(num.chunk(2)); // [[1, 2], [3, 4], [2, 3], [6, 7], [7]]
-// console.log(num.chunk()); // [[1], [2], [3], [4], [2], [3], [6], [7], [7]]
-// console.log(strings.chunk(3)); // [['h', 'e', 'l'], ['l', 'o', 'w'], ['o', 'r', 'l'], ['d']]
+console.log(num.chunk(2)); // [[1, 2], [3, 4], [2, 3], [6, 7], [7]]
+console.log(num.chunk()); // [[1], [2], [3], [4], [2], [3], [6], [7], [7]]
+console.log(strings.chunk(3)); // [['h', 'e', 'l'], ['l', 'o', 'w'], ['o', 'r', 'l'], ['d']]

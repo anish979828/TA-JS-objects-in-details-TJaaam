@@ -7,7 +7,7 @@
 
 // Property ending with `()` is method. And others are properties.
 
-// ![Inheritance](../assets/inheritance.png)
+![Inheritance](./assets/inheritance.png)
 
 class Person{
     constructor(name,age,gender){
